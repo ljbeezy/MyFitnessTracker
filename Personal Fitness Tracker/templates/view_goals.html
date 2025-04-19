@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Goals</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Your Weight Loss Goals</h1>
+    </header>
+    
+    <section id="goal-list">
+        {% if goals %}
+            <h2>Your Goals</h2>
+            <table border="1">
+                <tr>
+                    <th>Target Weight (lbs)</th>
+                    <th>Deadline</th>
+                    <th>Goal Creation Date</th>
+                    <th>Current Weight (lbs)</th>
+                    <th>Total Calories Consumed (kcal)</th>
+                    <th>Total Calories Burned (kcal)</th>
+                    <th>Net Calories (kcal)</th>
+                    <th>Goal Status</th>
+                </tr>
+                {% for goal in goals %}
+                <tr>
+                    <td>{{ goal.target_weight }}</td>
+                    <td>{{ goal.deadline }}</td>
+                    <td>{{ goal.goal_creation_date }}</td>
+                    <td>{{ goal.current_weight }}</td>
+                    <td>{{ goal.total_calories_consumed }}</td>
+                    <td>{{ goal.total_calories_burned }}</td>
+                    <td>{{ goal.net_calories }}</td>
+                    <td>{{ goal.goal_status }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>You have not set any goals yet. <a href="{{ url_for('set_goals') }}">Set your goal now</a>.</p>
+        {% endif %}
+    </section>
+    
+    <section id="back-button">
+        <a href="{{ url_for('dashboard') }}">
+            <button class="back-btn">Back to Dashboard</button>
+        </a>
+    </section>
+</body>
+</html>

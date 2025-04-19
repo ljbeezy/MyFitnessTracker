@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caloric Intake vs Caloric Loss</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+    <h1>Caloric Intake Vs Caloric Loss by Month</h1>
+
+    <form method="POST">
+        <label for="month">Select Month:</label>
+        <input type="number" name="month" min="1" max="12" required>
+        
+        <label for="year">Select Year:</label>
+        <input type="number" name="year" min="2000" max="2100" required>
+
+        <input type="hidden" name="user_id" value="{{ user_id }}">
+        
+        <button type="submit">View Chart</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Workouts</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Workouts for {{ user_name }}</h1>
+    </header>
+
+    <section id="view-workouts">
+        <h3>Past Workouts</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Workout Date</th>
+                    <th>Exercise Type</th>
+                    <th>Duration (minutes)</th>
+                    <th>Calories Burned</th>
+                    <th>WorkoutID</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for workout in workouts %}
+                    <tr>
+                        <td>{{ workout.WorkoutDate }}</td>
+                        <td>{{ workout.ExerciseType }}</td>
+                        <td>{{ workout.Duration }}</td>
+                        <td>{{ workout.CaloriesBurned }}</td>
+                        <td>{{ workout.WorkoutID }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    </footer>
+
+</body>
+</html>

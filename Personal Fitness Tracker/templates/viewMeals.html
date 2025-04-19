@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Meals</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Meals for {{ user_name }}</h1>
+    </header>
+
+    <section id="view-meals">
+        <h3>Past Meals</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Meal Date</th>
+                    <th>Food Items</th>
+                    <th>Calories Consumed</th>
+                    <th>MealID</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for meal in meals %}
+                    <tr>
+                        <td>{{ meal.MealDate }}</td>
+                        <td>{{ meal.FoodItems }}</td>
+                        <td>{{ meal.Calories }}</td>
+                        <td>{{ meal.MealID }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    </footer>
+
+</body>
+</html>

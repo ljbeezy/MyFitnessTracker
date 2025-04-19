@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <title>Recommended Workout</title>
+</head>
+<body>
+    <form method="POST">
+        <label for="workout_condition">Select Workout Condition:</label>
+        <select name="workout_condition" required>
+            <option value="less">less than</option>
+            <option value="equal">equal to</option>
+            <option value="more">more than</option>
+        </select>
+    
+        <label for="workout_duration">Duration (in minutes):</label>
+        <input type="number" name="workout_duration" required> <!-- User enters duration -->
+
+        <input type="hidden" name="user_id" value="1">
+        
+        <button type="submit">Get Recommended Workout</button>
+    </form>
+
+    {% if workout %}
+        <h2>Your Recommended Workout</h2>
+        
+        <!-- Display workout details in a table -->
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>WorkoutID</th>
+                    <th>Exercise Type</th>
+                    <th>Duration (minutes)</th>
+                    <th>Calories Burned</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ workout.WorkoutID }}</td>
+                    <td>{{ workout.ExerciseType }}</td>
+                    <td>{{ workout.Duration }}</td>
+                    <td>{{ workout.CaloriesBurned }}</td>
+                </tr>
+            </tbody>
+        </table>
+    {% else %}
+        <p>No workout found for this category.</p>
+    {% endif %}
+
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+</body>
+</html>

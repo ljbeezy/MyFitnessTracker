@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome, Admin!</h1>
+    </header>
+
+    <section id="user-list">
+        <h2>User Accounts</h2>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Height (feet.inches)</th>
+                <th>Weight (lbs) </th>
+                <th>Meals Logged</th>
+                <th>Workouts Logged</th>
+                <th>Goals Set</th>
+                <th>Action</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.Name }}</td>
+                <td>{{ user.Email }}</td>
+                <td>{{ user.Age }}</td>
+                <td>{{ user.Height }}</td>
+                <td>{{ user.Weight }}</td>
+                <td>{{ user.MealsLogged }}</td>
+                <td>{{ user.WorkoutsLogged }}</td>
+                <td>{{ user.GoalsSet }}</td>
+                <td>
+                    <form action="{{ url_for('edit_user', user_id=user.UserID) }}" method="get"">
+                        <input type="hidden" name="user_id" value="{{ user.UserID }}">
+                        <button type="submit">Edit User Information</button>
+                    </form>    
+                    <form action="{{ url_for('delete_user') }}" method="post">
+                        <input type="hidden" name="user_id" value="{{ user.UserID }}">
+                        <button type="submit">Delete User</button>
+                    </form>                
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section id="logout">
+        <a href="{{ url_for('admin_dashboard') }}">
+            <button class="logout-btn">Back to Dashboard</button>
+        </a>
+    </section>
+</body>
+</html>

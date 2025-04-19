@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - View All Meals</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome, Admin!</h1>
+    </header>
+
+    <section id="goal-list">
+        <h2>All Goals Logged by Users</h2>
+        <table border="1">
+            <tr>
+                <th>Logged By</th>
+                <th>TargetWeight</th>
+                <th>CurrentWeight</th>
+                <th>Deadline</th>
+                <th>Action</th>
+            </tr>
+            {% for goal in goals %}
+            <tr>
+
+                <td>{{ goal.UserName }}</td>
+                <td>{{ goal.TargetWeight }}</td>
+                <td>{{ goal.CurrentWeight }}</td>
+                <td>{{ goal.Deadline }}</td>
+                <td>
+                    <form action="{{ url_for('delete_goal_admin') }}" method="post">
+                        <input type="hidden" name="goal_id" value="{{ goal.GoalID }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section id="logout">
+        <a href="{{ url_for('admin_dashboard') }}">
+            <button class="logout-btn">Back to Dashboard</button>
+        </a>
+    </section>
+</body>
+</html>

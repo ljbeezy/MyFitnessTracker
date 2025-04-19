@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Workout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Edit Workout</h1>
+    </header>
+
+    <form method="POST">
+        <label for="ExerciseType">Exercise Type:</label><br>
+        <input type="text" id="ExerciseType" name="ExerciseType" value="{{ workout.ExerciseType }}" required><br>
+
+        <label for="Duration">Duration (minutes):</label><br>
+        <input type="number" id="Duration" name="Duration" value="{{ workout.Duration }}" required><br>
+
+        <label for="CaloriesBurned">Calories Burned:</label><br>
+        <input type="number" id="CaloriesBurned" name="CaloriesBurned" value="{{ workout.CaloriesBurned }}" required><br>
+
+        <label for="WorkoutDate">Workout Date:</label><br>
+        <input type="date" id="WorkoutDate" name="WorkoutDate" value="{{ workout.WorkoutDate }}" required><br><br>
+
+        <button type="submit">Update Workout</button>
+    </form>
+
+    <a href="{{ url_for('view_workouts_admin') }}">Back to Workouts List</a>
+</body>
+</html>

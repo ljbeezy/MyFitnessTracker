@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+    </header>
+    
+    <section id="actions">
+        <h2>Manage Users</h2>
+        <div class="button-group">
+            <a href="{{ url_for('view_users') }}">
+                <button class="action-btn">View Users</button>
+            </a>            
+        </div>
+
+        <h2>Manage Meals</h2>
+        <div class="button-group">
+            <a href="{{ url_for('log_meal_admin') }}">
+                <button class="action-btn">Add Recommended Meal</button>
+            </a>
+            <a href="{{ url_for('view_meals_admin') }}">
+                <button class="action-btn">View All Meals</button>
+            </a>         
+        </div>
+
+        <h2>Manage Workouts</h2>
+        <div class="button-group">
+            <a href="{{ url_for('log_workout_admin') }}">
+                <button class="action-btn">Add Recommended Workout</button>
+            </a>     
+            <a href="{{ url_for('view_workouts_admin') }}">
+                <button class="action-btn">View All Workouts</button>
+            </a>               
+        </div>
+
+        <h2>Manage Goals</h2>
+        <div class="button-group">
+            <a href="{{ url_for('view_goals_admin') }}">
+                <button class="action-btn">View All Goals</button>
+            </a>            
+        </div>
+    </section>
+    
+    <section id="logout">
+        <a href="{{ url_for('login') }}">
+            <button class="logout-btn">Logout</button>
+        </a>
+    </section>
+</body>
+</html>

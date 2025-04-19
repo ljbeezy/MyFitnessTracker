@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+    <h1>Update User Info</h1>
+    </header>
+    <form method="POST">
+        <label>Name:</label><br>
+        <input type="text" name="name" value="{{ user.Name }}" required><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email" value="{{ user.Email }}" required><br>
+
+        <label>New Password (leave blank to keep current):</label><br>
+        <input type="password" name="password"><br>
+
+        <label>Age:</label><br>
+        <input type="number" name="age" value="{{ profile.Age }}" required><br>
+
+        <label>Height (cm):</label><br>
+        <input type="number" name="height" step="0.1" value="{{ profile.Height }}" required><br>
+
+        <label>Weight (kg):</label><br>
+        <input type="number" name="weight" step="0.1" value="{{ profile.Weight }}" required><br><br>
+
+        <button type="submit">Update User</button>
+    </form>
+
+    <a href="{{ url_for('view_users') }}">Back to User List</a>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <p style="color: red;">{{ message }}</p>
+        {% endfor %}
+    {% endwith %}
+</body>
+</html>

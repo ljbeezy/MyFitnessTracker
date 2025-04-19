@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Personal Fitness Tracker</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script>
+        // Function to ensure no negative values can be entered
+        function noNegativeInput(event) {
+            if (event.target.value.startsWith('-')) {
+                event.target.value = event.target.value.replace('-', '');  // Remove the minus sign
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Register</h2>
+    <form method="POST">
+        <label>Name:</label>
+        <input type="text" name="name" required><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" required><br>
+
+        <label>Password:</label>
+        <input type="password" name="password" required><br>
+
+        <label>Age:</label>
+        <input type="number" name="age" required min="0" oninput="noNegativeInput(event)"><br>
+
+        <label>Height (in feet . inches ):</label>
+        <input type="number" name="height" step="0.01" min="0" required oninput="noNegativeInput(event)"><br>
+
+        <label>Weight (lbs):</label>
+        <input type="number" name="weight" step="0.1" min="0" required oninput="noNegativeInput(event)"><br>
+
+        <button type="submit">Register</button>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>  <!-- Display error message here -->
+    {% endif %}
+
+    <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+</body>
+</html>

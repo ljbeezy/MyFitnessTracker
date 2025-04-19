@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - View All Meals</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome, Admin!</h1>
+    </header>
+
+    <section id="meal-list">
+        <h2>All Workouts Logged by Users</h2>
+        <table border="1">
+            <tr>
+                <th>Exercise Type</th>
+                <th>Duration</th>
+                <th>CaloriesBurned</th>
+                <th>Workout Date</th>
+                <th>Logged By</th>
+                <th>WorkoutID</th>
+                <th>Action</th>
+            </tr>
+            {% for workout in workouts %}
+            <tr>
+                <td>{{ workout.ExerciseType }}</td>
+                <td>{{ workout.Duration }}</td>
+                <td>{{ workout.CaloriesBurned }}</td>
+                <td>{{ workout.WorkoutDate }}</td>
+                <td>{{ workout.UserName }}</td>
+                <td>{{ workout.WorkoutID }}</td>
+                <td>
+                    <!-- Update Form (Edit Meal) -->
+                    <form action="{{ url_for('edit_workout', workout_id=workout.WorkoutID) }}" method="get">
+                        <button type="submit">Update</button>
+                    </form>
+                    <form action="{{ url_for('delete_workout_admin') }}" method="post">
+                        <input type="hidden" name="workout_id" value="{{ workout.WorkoutID }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section id="logout">
+        <a href="{{ url_for('admin_dashboard') }}">
+            <button class="logout-btn">Back to Dashboard</button>
+        </a>
+    </section>
+</body>
+</html>

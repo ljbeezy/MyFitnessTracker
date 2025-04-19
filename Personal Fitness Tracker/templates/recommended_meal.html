@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <title>Recommended Meal</title>
+</head>
+<body>
+    <form method="POST">
+        <label for="meal_condition">Select Meal Condition :</label>
+        <select name="meal_condition" required>
+            <option value="less">less than</option>
+            <option value="equal">equal to</option>
+            <option value="more">more than</option>
+        </select>
+
+        <label for="meal_calories">Calories (in kCal):</label>
+        <input type="number" name="meal_calories" required> <!-- User enters calories -->
+
+        <input type="hidden" name="user_id" value="1">
+        
+        <button type="submit">Get Recommended Meal</button>
+    </form>
+    
+    {% if meal %}
+    <h2>Your Recommended Meal </h2>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>MealID</th>
+                <th>Food Items</th>
+                <th>Nutrients</th>
+                <th>Calories</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ meal.MealID }}</td>
+                <td>{{ meal.FoodItems }}</td>
+                <td>{{ meal.Nutrients }}</td>
+                <td>{{ meal.Calories }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% else %}
+        <p>No meal found for this category.</p>
+    {% endif %}
+
+    <!-- Dashboard link moved below the table -->
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+</body>
+</html>

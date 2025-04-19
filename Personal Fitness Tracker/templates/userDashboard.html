@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Fitness Tracker - Dashboard</title>
+    <link rel="stylesheet" href="static/style.css">
+    <header>
+        <h1>Welcome, {{ user_name }}!</h1>
+    </header>
+    
+    <section id="profile">
+        <h3>Profile Information</h3>
+        <p>Name: {{ user_name }}</p>
+        <p>Current Weight: {{ user_weight }} lbs</p>
+    
+        <h4>Update Your Profile</h4>
+        <form action="{{ url_for('edit_profile') }}" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="name" value="{{ user_name }}" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" value="{{ user_email }}" required><br>
+
+    <label for="weight">Weight (lbs):</label>
+    <input type="float" name="weight" value="{{ user_weight }}" step="0.1" min="0" required><br>
+
+    <label for="age">Age:</label>
+    <input type="number" name="age" value="{{ user_age }}" min="0" required><br>
+
+    
+    <label for="height">Height (in inches):</label>
+    <input type="float" name="height" value="{{ user_height }}" step="0.1" min="0" required><br>
+
+    <button type="submit">Update Profile</button>
+</form>
+    
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </section>
+    
+    <section id="actions">
+        <h2>Create New</h2>
+        <div class="button-group">
+            <a href="{{ url_for('log_meal') }}">
+                <button class="action-btn">Log Meal</button>
+            </a>
+            <a href="{{ url_for('log_workout') }}">
+                <button class="action-btn">Log Workout</button>
+            </a>
+            <a href="{{ url_for('set_goals') }}">
+                <button class="action-btn">Set Goal</button>
+            </a>
+        </div>
+        <h2>Logs</h2>
+        <div class="button-group">
+            <a href="{{ url_for('view_meals') }}">
+                <button class="action-btn">View Past Meals</button>
+            </a>
+            <a href="{{ url_for('view_workouts') }}">
+                <button class="action-btn">View Past Workouts</button>
+            </a>
+            <a href="{{ url_for('view_goals') }}">
+                <button class="action-btn">View Goals</button>
+            </a>
+            <a href="{{ url_for('view_chart') }}">
+                <button class="action-btn">View Caloric Difference</button>
+            </a>
+        </div>
+        <h2>Recommendations</h2>
+        <div class="button-group">
+            <a href="{{ url_for('recommended_meal') }}">
+                <button class="action-btn">Recommended Meal</button>
+            </a>
+            <a href="{{ url_for('recommended_workout') }}">
+                <button class="action-btn">Recommended Workout</button>
+            </a>
+            
+        </div>
+    </section>
+    <section id="change-password">
+        <h2>Account</h2>
+        <div class="button-group">
+            <a href="{{ url_for('change_password') }}">
+                <button>Change Password</button>
+            </a>
+            <a href="{{ url_for('delete_account') }}">
+                <button>Delete Account</button>
+            </a>
+        </div>
+    </section>
+    <section id="logout">
+        <div class="button-group"></div>
+            <a href="{{ url_for('login') }}">
+                <button class="logout-btn">Logout</button>
+            </a>
+        </div>
+    </section>
+    

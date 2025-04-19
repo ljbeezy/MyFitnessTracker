@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Meal - Personal Fitness Tracker</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script>
+        // Function to toggle the required fields based on the WorkoutID input
+        function toggleRequiredFields() {
+            var MealID = document.getElementById("MealID").value;
+            var FoodItems = document.getElementById("FoodItems");
+            var Calories = document.getElementById("Calories");
+            var Nutrients = document.getElementById("Nutrients");
+            var MealDate = document.getElementById("MealDate");
+
+            // If there's no WorkoutID, make these fields required
+            if (MealID === "") {
+                FoodItems.required = true;
+                Calories.required = true;
+            } else {
+                FoodItems.required = false;
+                Calories.required = false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Log Meal (If Using Reccomended, Only Fill Out Date + MealID)</h2>
+    <form method="POST" action="{{ url_for('log_meal') }}">
+        <label>Date:</label>
+        <input type="date" name="MealDate" required><br>
+
+        <label>Food Items:</label>
+        <input type="text" id="FoodItems" name="FoodItems"><br>
+
+        <label>Calories (kcal):</label>
+        <input type="float" id="Calories" name="Calories"><br>
+
+        <label>Nutrients:</label>
+        <input type="text" id="Nutrients" name="Nutrients"><br>
+
+        <label>MealID (if using recommended):</label>
+        <input type="number" id="MealId" name="MealID" oninput="toggleRequiredFields()"><br>
+
+        <button type="submit">Log Workout</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Your Fitness Goals</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <h1>Set Your Fitness Goal</h1>
+    
+    <form method="POST">
+        <label for="TargetWeight">Target Weight (lbs):</label>
+        <input type="number" name="TargetWeight" step="0.1" min="0" required><br>
+
+        <label for="deadline">Deadline (YYYY-MM-DD):</label>
+        <input type="date" name="Deadline" required><br>
+
+        <button type="submit">Set Goal</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

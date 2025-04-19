@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - View All Meals</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome, Admin!</h1>
+    </header>
+
+    <section id="meal-list">
+        <h2>All Meals Logged by Users</h2>
+        <table border="1">
+            <tr>
+                <th>Food Items</th>
+                <th>Calories</th>
+                <th>Logged By</th>
+                <th>Meal Date</th>
+                <th>Meal ID</th>
+                <th>Action</th>
+            </tr>
+            {% for meal in meals %}
+            <tr>
+                <td>{{ meal.FoodItems }}</td>
+                <td>{{ meal.Calories }}</td>
+                <td>{{ meal.UserName }}</td>
+                <td>{{ meal.MealDate }}</td>
+                <td>{{ meal.MealID }}</td>
+                <td>
+                    <!-- Update Form (Edit Meal) -->
+                    <form action="{{ url_for('edit_meal', meal_id=meal.MealID) }}" method="get">
+                        <button type="submit">Update</button>
+                    </form>
+                    <!-- Delete Form -->
+                    <form action="{{ url_for('delete_meal_admin') }}" method="post">
+                        <input type="hidden" name="meal_id" value="{{ meal.MealID }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section id="logout">
+        <a href="{{ url_for('admin_dashboard') }}">
+            <button class="logout-btn">Back to Dashboard</button>
+        </a>
+    </section>
+</body>
+</html>
